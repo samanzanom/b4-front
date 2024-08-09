@@ -1,1 +1,40 @@
-<p>home works!</p>
+<div class="home-container">
+  <h1>Carga de Archivo Excel</h1>
+
+  <input type="file" (change)="onFileSelected($event)" accept=".xlsx, .xls">
+
+  <button mat-raised-button color="primary" (click)="onUpload()" [disabled]="!selectedFile">
+    Cargar
+  </button>
+
+  <button mat-raised-button color="accent" (click)="loadData()">
+    Consultar
+  </button>
+
+  <mat-table [dataSource]="loadedData" class="mat-elevation-z8">
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef> Nombre </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="rut">
+      <mat-header-cell *matHeaderCellDef> RUT </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.rut}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="field1">
+      <mat-header-cell *matHeaderCellDef> Campo 1 </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.field1}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="field2">
+      <mat-header-cell *matHeaderCellDef> Campo 2 </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.field2}} </mat-cell>
+    </ng-container>
+
+    <!-- Añade más ng-container para otros campos si es necesario -->
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+</div>
